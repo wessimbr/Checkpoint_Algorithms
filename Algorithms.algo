@@ -1,0 +1,37 @@
+ALGORITHM SentenceAnalysis
+VAR
+    sentence: STRING
+    sentence_length: INTEGER
+    wordCount: INTEGER
+    vowelCount: INTEGER
+    char: CHAR
+
+BEGIN
+    sentence_length := 0;
+    wordCount := 0;
+    vowelCount := 0;
+
+    WRITE "Enter a sentence: "
+    READ sentence
+
+    FOR i FROM 1 TO sentence_length(sentence)
+        char := SUBSTRING(sentence, i, 1);
+        sentence_length := sentence_length + 1;
+
+        IF char = " " THEN
+            wordCount := wordCount + 1;
+        ELSE
+            IF char = "a" OR char = "e" OR char = "i" OR char = "o" OR char = "u" OR
+               char = "A" OR char = "E" OR char = "I" OR char = "O" OR char = "U" THEN
+                vowelCount := vowelCount + 1;
+            END IF
+        END IF
+    END FOR
+
+    wordCount := wordCount + 1 ; // Count the last word
+    sentence_length := sentence_length - 1 ; // Exclude the period from the sentence_length
+
+    WRITE "sentence_length of the sentence: " + sentence_length ;
+    WRITE "Number of words in the sentence: " + wordCount ;
+    WRITE "Number of vowels in the sentence: " + vowelCount ;
+END
